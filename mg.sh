@@ -20,6 +20,7 @@ migrate() {
   for script_file in $(ls $mg_dir | comm -23 - $mg_data_file)
   do
     echo $script_file | tee -a $mg_migrating_file
+    # TODO: when exit status not 0
     . ${mg_dir}/${script_file}
     echo $(date +'%Y-%m-%d %H:%M:%S'),${script_file} >> $mg_migration_log
   done
